@@ -1,4 +1,6 @@
-function SimulationRenderer( size, renderer ) {
+var THREE = THREE || {};
+
+THREE.SimulationRenderer = function( size, renderer ) {
     this.size = size || 4;
     this.numParticles = this.size * this.size;
     this.renderer = renderer;
@@ -27,8 +29,8 @@ function SimulationRenderer( size, renderer ) {
             resolution: { type: "v2", value: new THREE.Vector2( this.size, this.size ) },
             texture: { type: "t", value: null }
         },
-        vertexShader: SimulationRenderer.shaders.vertex.passThru,
-        fragmentShader: SimulationRenderer.shaders.fragment.passThru
+        vertexShader: THREE.SimulationRenderer.shaders.vertex.passThru,
+        fragmentShader: THREE.SimulationRenderer.shaders.fragment.passThru
     } );
 
     this.passThruMesh = new THREE.Mesh(
@@ -44,7 +46,7 @@ function SimulationRenderer( size, renderer ) {
     this.deltaTime = 0.0;
 }
 
-SimulationRenderer.prototype = {
+THREE.SimulationRenderer.prototype = {
     createRenderTarget: function( type, name ) {
         var target = new THREE.WebGLRenderTarget( this.size, this.size, {
             wrapS: THREE.RepeatWrapping,
@@ -167,7 +169,7 @@ SimulationRenderer.prototype = {
 };
 
 
-SimulationRenderer.shaders = {
+THREE.SimulationRenderer.shaders = {
     vertex: {
         passThru: [
             'void main() {',

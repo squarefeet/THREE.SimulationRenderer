@@ -298,7 +298,7 @@
         <script type="text/javascript" src="res/js/vendor/three.js"></script>
         <script type="text/javascript" src="res/js/vendor/stats.min.js"></script>
         <script type="text/javascript" src="res/js/vendor/system.min.js"></script>
-        <script type="text/javascript" src="res/js/SimulationRenderer.js"></script>
+        <script type="text/javascript" src="res/js/THREE.SimulationRenderer.js"></script>
         <script type="text/javascript" src="res/js/THREE.BirdGeometry.js"></script>
 
         <script type="text/javascript">
@@ -459,7 +459,7 @@
 
 
             function makeSimulation() {
-                simulation = new SimulationRenderer( WIDTH, renderer );
+                simulation = new THREE.SimulationRenderer( WIDTH, renderer );
 
                 birdPositionShader = new THREE.ShaderMaterial( {
                     uniforms: {
@@ -469,7 +469,7 @@
                         texturePosition: { type: "t", value: null },
                         textureVelocity: { type: "t", value: null },
                     },
-                    vertexShader: SimulationRenderer.shaders.vertex.passThru,
+                    vertexShader: THREE.SimulationRenderer.shaders.vertex.passThru,
                     fragmentShader: getShader( 'fragmentShaderPosition' )
                 } );
 
@@ -490,7 +490,7 @@
                     defines: {
                         WIDTH: WIDTH.toFixed(2)
                     },
-                    vertexShader: SimulationRenderer.shaders.vertex.passThru,
+                    vertexShader: THREE.SimulationRenderer.shaders.vertex.passThru,
                     fragmentShader: getShader( 'fragmentShaderVelocity' )
                 } );
 
@@ -585,7 +585,7 @@
                 birdUniforms.time.value += delta;
                 birdUniforms.delta.value = delta;
 
-                simulation.render( 0.016 );
+                simulation.render( delta );
 
                 // birdMesh.material.uniforms.texturePosition = simulation.getTexture( 'texturePosition' );
                 // birdMesh.material.uniforms.textureVelocity = simulation.getTexture( 'textureVelocity' );
