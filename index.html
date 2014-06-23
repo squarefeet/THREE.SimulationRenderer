@@ -587,14 +587,9 @@
 
                 simulation.render( delta );
 
-                // birdMesh.material.uniforms.texturePosition = simulation.getTexture( 'texturePosition' );
-                // birdMesh.material.uniforms.textureVelocity = simulation.getTexture( 'textureVelocity' );
-
                 birdVelocityShader.uniforms.predator.value.set( mouseX / windowHalfX, -mouseY / windowHalfY, 0 );
-
                 mouseX = 10000;
                 mouseY = 10000;
-
 
                 renderer.render( scene, camera );
             }
