@@ -99,6 +99,8 @@ THREE.SimulationRenderer.prototype = {
                 outputTarget: outputTarget
             };
 
+        // renderable.shaderMaterial.uniforms.sourceTexture.value = texture;
+        // renderable.shaderMaterial.needsUpdate = true;
 
         // Render current texture to both buffers
         this.renderToTexture( texture, inputTarget );
@@ -121,7 +123,7 @@ THREE.SimulationRenderer.prototype = {
 
     setSingleShaderValue: function( target, i ) {
         if( i === 'time' ) {
-            target[ i ].value = performance.now();
+            target[ i ].value += this.deltaTime;
         }
         else if( i === 'delta' ) {
             target[ i ].value = this.deltaTime;
